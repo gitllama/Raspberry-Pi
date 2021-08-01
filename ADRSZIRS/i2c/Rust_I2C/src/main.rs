@@ -19,8 +19,7 @@ const SEND_DATA: u8 = 0x39;
 const SLEEP_TIME:u64 = 5;
 
 fn read_command() -> Result<u8, rppal::i2c::Error>{
-    
-    
+
     let mut i2c = I2c::with_bus(1)?;
     //i2c.set_timeout(100)?;
     i2c.set_slave_address(ADDR)?;
@@ -34,11 +33,11 @@ fn read_command() -> Result<u8, rppal::i2c::Error>{
     let mut buf_length:[u8;3] = Default::default();
     i2c.block_read(READ_DATA_LENGTH, &mut buf_length)?;
     let data_length:i32 = BigEndian::read_u16(&buf_length[1..3]) as i32;
-    //let data_length:i32 = (buf_length[1] as i32) << 8 | (buf_length[2] as i32);
+    // let data_length:i32 = (buf_length[1] as i32) << 8 | (buf_length[2] as i32);
     
     println!("{:?}, {}",buf_length, data_length);
 
-    //if(data_length >= 65535){ Err(None); }
+    // if(data_length >= 65535){ Err(None); }
 
     let mut result = String::from("");
     let mut buf:[u8;1] = Default::default();
@@ -76,7 +75,7 @@ fn write_command(val:&str) -> Result<u8, rppal::i2c::Error>{
         let mut data:[u8;4] = Default::default();
         let n = u32::from_str_radix(&val[_i.._i+8], 16).unwrap();
         BigEndian::write_u32(&mut data, n);
-        //println!("{:?}",data);
+        // println!("{:?}",data);
         i2c.block_write(WRITE_DATA, &data)?;
     }
 
