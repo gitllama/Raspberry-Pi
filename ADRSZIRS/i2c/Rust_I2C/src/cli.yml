@@ -1,0 +1,21 @@
+name: RustI2C
+version: "1.0"
+author: gitllama
+about: IR Sender
+args:
+  - write:
+      short: w
+      long: write
+      help: Write IR Signal
+      value_name: CODE
+      takes_value: true
+  - read:
+      short: r
+      long: read
+      help: Read IR Signal
+groups:
+  - CMD:
+      required: true
+      args:
+        - read
+        - write
