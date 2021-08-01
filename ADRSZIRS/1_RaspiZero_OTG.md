@@ -29,8 +29,9 @@
 
 - wifi確認
   - ```$ sudo iwlist wlan0 scan | grep ESSID```
-  - ```$ sudo nano /etc/wpa_supplicant/wpa_supplicant.conf```
-    - wifi設定の書込
+  - wifi設定の書込
+    - ```$ sudo wpa_passphrase [ssid] [WIFIパスワード]``` : 暗号化されたWIFIパスワードの表記の生成
+    - ```$ sudo nano /etc/wpa_supplicant/wpa_supplicant.conf``` : 上記で表示されたものを追記
   - ```$ sudo reboot``` or ```$ sudo halt```
   - ```$ ifconfig```
 - アップデート
