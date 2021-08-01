@@ -42,12 +42,14 @@ express + PM2を使用
 - appのrun(ターミナルが落ちると終了)
   - ```DEBUG=pircsv:* npm start```
   - http://raspberrypi.local:3000/で接続
-- pm2でプロセスの実行(別プロセスで実行)
-  - ```$ pm2 start [config.js] --name [name]```
+- pm2でプロセスの実行(別プロセスで実行), 終了
+  - ```$ pm2 start [app.json] --name [name]```
+  - ```$ pm2 start [app.json] --name [name] --env production```
+  - ```$ pm2 list```
+  - ```$ pm2 stop app```
 - pm2で自動起動のスクリプトを作成
-  - $ pm2 startup
-  - 指定されてコマンドの実行
-    - 例) sudo env PATH=$PATH:/usr/local/bin /usr/local/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi
-  - $ pm2 save
-- $ reboot
-- $ pm2 list
+  - ```$ pm2 startup```
+  - 指定されたコマンドの実行
+    - 例) ```sudo env PATH=$PATH:/usr/local/bin /usr/local/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi```
+  - ```$ pm2 save```
+　- ```$ reboot```
