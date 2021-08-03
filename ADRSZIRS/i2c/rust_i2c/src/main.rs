@@ -1,16 +1,13 @@
-use rppal::i2c::I2c;
-use byteorder::{BigEndian, ByteOrder};
-use std::str;
-use std::{thread, time::Duration};
-use serde_json::Value;
-// use std::error::Error;
-use std::fs::File;
-use std::io::BufReader;
-//  use std::path::Path;
-
 #[macro_use]
 extern crate clap;
 use clap::App;
+
+use rppal::i2c::I2c;
+use byteorder::{BigEndian, ByteOrder};
+use std::{str, thread, time::Duration, fs};
+use yaml_rust::YamlLoader;
+// use std::error::Error;
+// use std::path::Path;
 
 
 struct RaspiI2c {
@@ -133,17 +130,50 @@ fn write_command(val:&str) -> Result<u8, rppal::i2c::Error>{
 }
 
 
+fn yml2list(filepath:&str){
+    let content = fs::read_to_string(filepath).unwrap();
+    let objs = YamlLoader::load_from_str(content.as_str()).unwrap();
+    let obj= &objs[0];
+    for i in obj.as_hash().unwrap() {
+        let modelname = i.0.as_str().unwrap();
+        for j in (i.1).as_hash().unwrap() {
+            let key = j.0.as_str().unwrap();
+            println!("{} : {}", modelname, key);
+        }
+    }
+}
+
+fn yml2str(filepath:&str, model:&str, key:&str) -> String {
+    let content = fs::read_to_string(filepath).unwrap();
+    let objs = YamlLoader::load_from_str(content.as_str()).unwrap();
+    let obj= &objs[0];
+    let dst = obj[model][key].as_str().unwrap();
+    dst.to_string()
+}
+
+/* Examples of use by serde_json
+use serde_json::Value;
+use std::fs::File;
+use std::io::BufReader;
+
+if let Some(os) = matches.values_of("key") {
+    let filepath = matches.value_of("config").unwrap();
+    let file = File::open(filepath).unwrap();
+    let reader = BufReader::new(file);
+    let json: Value = serde_json::from_reader(reader).unwrap();  
+    let keys: Vec<_> = os.collect();
+    let code = json[keys[0]][keys[1]].as_str().unwrap();
+}
+*/
+
 fn main() {
 
     let yaml = load_yaml!("cli.yml");
     let matches = App::from_yaml(yaml).get_matches();
 
     if matches.is_present("list") { 
-        let paths = matches.value_of("config").unwrap();
-        let file = File::open(paths).unwrap();
-        let reader = BufReader::new(file);
-        let json: Value = serde_json::from_reader(reader).unwrap();
-        println!("{:?}", json);
+        let filepath = matches.value_of("config").unwrap();
+        yml2list(filepath);
         return;
     }    
     
@@ -166,16 +196,18 @@ fn main() {
     }
 
     if let Some(os) = matches.values_of("key") {
+        let filepath = matches.value_of("config").unwrap();
+        
         // for o in os { println!("key: {}", o); }
         // matches.values_of("key").unwarp().collect();
+        let keys: Vec<_> = os.collect();
+        let model = keys[0];
+        let key = keys[1];
         
-        let paths = matches.value_of("config").unwrap();
-        let file = File::open(paths).unwrap();
-        let reader = BufReader::new(file);
-        let json: Value = serde_json::from_reader(reader).unwrap();
-        let a: Vec<_> = os.collect();
-        println!("key: {} {}",a[0], a[1]);
-        let result = write_command(json[a[0]][a[1]].as_str().unwrap());
+        let code = yml2str(filepath, model, key);
+
+        println!("{} {}", model, key);
+        let result = write_command(code.as_str());
         match result{
             Ok(n) => println!("Done : {}", n),
             Err(e) => println!("Error : {}", e),

@@ -29,7 +29,7 @@ args:
       long: config
       value_name: FILE
       takes_value: true
-      default_value: ./config.json
+      default_value: ./config.yml
   - wait:
       help: Wait Time [sec]
       short: w
