@@ -1,8 +1,9 @@
 # ADRSZIRS サンプルプログラム
 
-- 3_2adrszIRS-sample.py : ビット・トレード・ワンオリジナル
-- adrszirs.py : Pyhtonでの一部書き換え
-- rust_i2c : Rustでの書き換え
+- 3_2adrszIRS-sample.py : ビット・トレード・ワン提供ソース
+- adrszirs.py : Pyhtonで一部書き換え
+- rust_adrszirs : Rustで書き換え
+- rust_i2c : jsonでのテーブル参照を含め
 
 ## 実行方法
 
