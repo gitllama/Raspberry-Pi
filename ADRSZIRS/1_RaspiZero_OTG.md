@@ -44,4 +44,4 @@
   - ```$ sudo raspi-config```
     - interfaxeing option > VNC > ON : これだけでも動く
  
-リモートディスクトップ先につながってるなら、ぜんぶGUIのウィザードで設定してもいいかも。
+```$ sudo raspi-config``` > Network Options > Wi-Fi の方が楽かも
