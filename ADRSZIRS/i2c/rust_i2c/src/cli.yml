@@ -1,0 +1,46 @@
+name: i2c
+version: "0.1.0"
+author: gitllama
+about: IR Remote Controller
+args:
+  - read:
+      help: Read IR Code
+      short: r
+      long: read
+  - send:
+      help: Send IR Code
+      short: s
+      long: send
+      value_name: CODE
+      takes_value: true
+  - key:
+      help: Send IR Code By Key
+      short: k
+      long: key
+      value_names: [MODEL, KEY]
+      takes_value: true
+  - list:
+      help: Key List
+      short: l
+      long: list
+  - config:
+      help: Config File
+      short: c
+      long: config
+      value_name: FILE
+      takes_value: true
+      default_value: ./config.json
+  - wait:
+      help: Wait Time [sec]
+      short: w
+      long: wait
+      value_name: WAITTIME
+      takes_value: true
+      default_value: "5"
+groups:
+  - CMD:
+      required: true
+      args:
+        - read
+        - send
+        - key

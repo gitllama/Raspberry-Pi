@@ -1,0 +1,12 @@
+[package]
+name = "i2c"
+version = "0.1.0"
+authors = ["gitllama"]
+description = "IR Remote Controller"
+edition = "2018"
+
+[dependencies]
+rppal = "*"
+clap = {version = "2.33.3", features = ["yaml"]}
+byteorder = "*"
+serde_json = "*"
