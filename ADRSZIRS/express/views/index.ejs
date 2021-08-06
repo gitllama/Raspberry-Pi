@@ -92,7 +92,7 @@
       <% for (pos in remote_layout[tab]){ %>
       <button id="mybutton" class="button is-white"
               style="position:absolute;<%= myFunc.setPos(pos); %>"
-              onclick="onClickBtn(<%= myFunc.getVal(tab,pos,'command'); %>)">
+              onclick="onClickBtn('<%= myFunc.getVal(tab,pos,'command'); %>')">
         <% if(myFunc.getVal(tab,pos,'icon') !='') { %>  
           <div id="mybutton-inner">
             <i class="material-icons" style="font-size:32px; color:<%= myFunc.getVal(tab,pos,'color'); %>">
