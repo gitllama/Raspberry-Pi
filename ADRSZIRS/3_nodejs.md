@@ -2,7 +2,7 @@
 
 ## 3.1. PythonのCall
 
-a. Python-shell
+### a. Python-shell
 
 ```$ npm install python-shell```
 
@@ -40,7 +40,7 @@ num2 = int(sys.argv[2])
 print(num1 + num2)          // 標準出力へ結果を返す
 ```
 
-b. child_process
+### b. child_process
 
 ```javascript
 var exec = require('child_process').exec;
