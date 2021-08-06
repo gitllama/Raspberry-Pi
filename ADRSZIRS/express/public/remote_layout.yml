@@ -1,0 +1,133 @@
+LG :
+  0-0 :
+    command : "-k+LG+Power"
+    color : "red"
+    icon : "power_settings_new"
+    label1 : "Power"
+    label2 : "" 
+  2-0 : 
+    command : "-k+LG+Input"
+    icon : "mediation"
+    label1 : "Input"
+    label2 : "" 
+  0-1 :
+    command : "-k+LG+VolUp"
+    icon : "volume_up"
+    label1 : "Vol +"
+    label2 : "" 
+  1-1 :
+    command : "-k+LG+Mute"
+    icon : "volume_off"
+    label1 : "Mute"
+    label2 : "" 
+  2-1 :
+    command : "-k+LG+BrightnessUp"
+    icon : "brightness_high"
+    label1 : "Bright +"
+    label2 : "" 
+  0-2 :
+    command : "-k+LG+VolDown"
+    icon : "volume_down"
+    label1 : "Vol -"
+    label2 : "" 
+  1-2 :
+    command : "-k+LG+Mute"
+    icon : "mediation"
+    label1 : "Input"
+    label2 : "s" 
+  2-2 :
+    command : "-k+LG+BrightnessDown"
+    icon : "brightness_low"
+    label1 : "Bright -"
+    label2 : "" 
+  0-3 : 
+    command : "-k+LG+Menu"
+    icon : "menu"
+    label1 : "menu"
+    label2 : "" 
+  1-3 : 
+    command : "-k+LG+Up"
+    icon : "expand_less"
+    label1 : ""
+    label2 : "" 
+  2-3 : 
+    command : "-k+LG+Exit"
+    icon : "close"
+    label1 : "exit"
+    label2 : "" 
+  0-4 : 
+    command : "-k+LG+Left"
+    icon : "chevron_left"
+    label1 : ""
+    label2 : "" 
+  1-4 : 
+    command : "-k+LG+OK"
+    icon : "check_circle_outline"
+    label1: ""
+    label2 : "" 
+  2-4 : 
+    command : "-k+LG+Right"
+    icon : "chevron_right"
+    label1 : ""
+    label2 : "" 
+  0-5 : 
+    command : "-k+LG+GameMode"
+    icon : ""
+    label1 : "GameMode"
+    label2 : "" 
+  1-5 : 
+    command : "-k+LG+Down"
+    icon : "expand_more"
+    label1 : ""
+    label2 : "" 
+  2-5 : 
+    command : "-k+LG+PictureMode"
+    icon : ""
+    label1 : "PictureMode"
+    label2 : "" 
+  0-6 : 
+    command : "-k+LG+PBP_PIP"
+    icon : ""
+    label1 : "PBP"
+    label2 : "PIP" 
+  1-6 : 
+    command : "-k+LG+FullScreen"
+    icon : ""
+    label1 : "FullScreen"
+    label2 : "" 
+  2-6 : 
+    command : "-k+LG+AudioSelect"
+    icon : "mediation"
+    label1 : "AudioSelect"
+    label2 : "" 
+HDMI :
+  0-0 :
+    command : "-k+HDMI+Ch1"
+    icon : ""
+    label1 : "Ch1"
+    label2 : ""
+  0-1 :
+    command : "-k+HDMI+Ch2"
+    icon : ""
+    label1 : "Ch2"
+    label2 : ""
+  0-2 :
+    command : "-k+HDMI+Ch3"
+    icon : ""
+    label1 : "Ch3"
+    label2 : ""
+  0-3 :
+    command : "-k+HDMI+Ch4"
+    icon : ""
+    label1 : "Ch4"
+    label2 : ""
+  2-0 :
+    command : "-k+HDMI+AudioCh"
+    icon : ""
+    label1 : "5.1ch/2ch"
+    label2 : ""
+  2-1 :
+    command : "-k+HDMI+RC"
+    icon : ""
+    label1 : "RC"
+    label2 : ""

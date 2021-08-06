@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang='ja'>
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="local-bulma/css/bulma.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+  <% 
+    var tablist = [ ];
+    for (key in remote_layout){
+      tablist.push(key);
+    }
+    var myFunc = {
+      setPos: (pos) => {
+        var p = pos.split('-');
+        return `left:${parseInt(p[0])*80}px;top:${parseInt(p[1])*80}px;`;
+      },
+      getVal: (t, pos, key) => {
+        if(key in (remote_layout[t][pos])){
+          return `${remote_layout[t][pos][key]}`;
+        }else{
+          return "";
+        }
+      },
+      caption: (t, pos) => {
+        if(`${remote_layout[t][pos]["label2"]}` != ""){
+          return `${remote_layout[t][pos]["label1"]}<br/>${remote_layout[t][pos]["label2"]}`;
+        }else{
+          return `${remote_layout[t][pos]["label1"]}`; 
+        }
+      }
+    };
+  %>
+  <style type="text/css">
+    #mybutton {
+      width: 80px;
+      height: 80px;
+    }
+    #mybutton-inner {
+      width:80px; 
+      position:absolute;
+      top: 14px;
+      left: 0px;
+    }
+    #mybutton-inner2 {
+      width:80px;
+      height: 24px;
+      position:absolute;
+      top:50px;
+      left: 0px; 
+      font-size:8px; 
+      line-height:12px;
+    }
+    #mybutton-inner3 {
+      font-size:12px;
+      line-height:16px;
+      vertical-align: middle;
+      padding-bottom: 18px;
+    }
+  </style>
+  <script>
+    function openTab(tabName) {
+      document.querySelectorAll("li").forEach(function (val) {
+        val.classList.remove("is-active");
+        document.getElementById(`${val.id}-content`).style.visibility = 'hidden';
+      });
+      document.querySelector(`#${tabName}`).classList.add("is-active");
+      document.getElementById(`${tabName}-content`).style.visibility = 'visible';
+    }
+
+    var onClickBtn = function(query){
+      fetch(`./command/?op=${query}`, { 
+        method: 'POST',
+        body : JSON.stringify({id : "test"})
+      }).then((res) => res.json())
+        .then((obj) => console.log(obj))
+        .catch((err) => console.error('Error:', err));
+    }
+  
+  </script>
+  <body>
+    <div class="tabs">
+      <ul> 
+      <% tablist.forEach(function(tab){ %>
+        <li id="tab-<%= tab %>"><a onclick="openTab('tab-<%= tab %>')"><%= tab %></a></li>
+      <% }); %> 
+      </ul>
+    </div>
+    <% tablist.forEach(function(tab){ %>
+    <div id="tab-<%= tab %>-content" style="position: relative;">
+      <% for (pos in remote_layout[tab]){ %>
+      <button id="mybutton" class="button is-white"
+              style="position:absolute;<%= myFunc.setPos(pos); %>"
+              onclick="onClickBtn(<%= myFunc.getVal(tab,pos,'command'); %>)">
+        <% if(myFunc.getVal(tab,pos,'icon') !='') { %>  
+          <div id="mybutton-inner">
+            <i class="material-icons" style="font-size:32px; color:<%= myFunc.getVal(tab,pos,'color'); %>">
+              <%= myFunc.getVal(tab,pos,'icon'); %>
+            </i>
+          </div>
+          <div id="mybutton-inner2"><%- myFunc.caption(tab,pos); %></div>
+        <% }else{ %>
+          <p id="mybutton-inner3" ><%- myFunc.caption(tab,pos); %></p>
+        <% } %>
+        </button>
+      <% } %>
+    </div>
+    <% }); %> 
+  </body>
+  <script>
+    openTab("tab-<%= tablist[0]; %>");
+  </script>
+</html>
