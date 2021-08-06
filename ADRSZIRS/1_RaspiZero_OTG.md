@@ -3,12 +3,12 @@
 ## 1.1. Raspberry Pi OSの起動
 
 - [公式](https://www.raspberrypi.org/software/)よりインストーラDL
-  - WinsowマシンにSD刺す
+  - WindowsマシンにSD刺す
   - OSとインストール先を選択しインストール
     - CHOOSE OS : Raspberry Pi OS (32-bit)
     - CHOOSE SD CARD : 対象SDカードドライブ
 - SSH設定の有効化
-  - SDを一度抜き差ししてWinsowにマウント
+  - SDを一度抜き差ししてWindowsにマウント
   - /boot/config.txt編集
     - ```dtoverlay=dwc2```の追記
   - /boot/cmdline.txt編集
